@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-lastest
+
+    steps:
+    - uses: actions/checkout@v3 
+    
+    - name: "login to Docker hub"
+      run: docker login --username ahmednabil2003 --password dckr_pat_qlbQKJ3HiHHn3Z5CysJenl-HVIQ
+    - name: "Bulding to docker image"
+      run: docker build -t ahmednabil2003/myimage .
+    - name: "Pushing to docker hub"
+      run: docker push ahmednabil2003/myimage
